@@ -11,25 +11,125 @@ export const ShopProvider = ({ children }) => {
   const [recommendations, setRecommendations] = useState([]);
 
   useEffect(() => {
-    fetch('https://fakestoreapi.com/products')
-      .then(res => res.json())
-      .then(data => {
-        // Find max price in the original data
-        const maxOriginalPrice = Math.max(...data.map(item => item.price));
+    const fetchAllProducts = async () => {
+      try {
+        // Fetch from Fake Store API
+        const fakeStoreResponse = await fetch('https://fakestoreapi.com/products');
+        const fakeStoreData = await fakeStoreResponse.json();
 
-        const adaptedProducts = data.map(item => ({
-          id: item.id,
+        // Fetch from DummyJSON API
+        const dummyJsonResponse = await fetch('https://dummyjson.com/products?limit=50');
+        const dummyJsonData = await dummyJsonResponse.json();
+
+        // Custom Indian products
+        const customProducts = [
+          {
+            id: 1001,
+            title: 'Samsung Galaxy S23 Ultra 5G',
+            price: 89999,
+            category: 'smartphones',
+            image: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400',
+            rating: { rate: 4.7, count: 1250 }
+          },
+          {
+            id: 1002,
+            title: 'LG 55" 4K Smart TV',
+            price: 45999,
+            category: 'electronics',
+            image: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400',
+            rating: { rate: 4.5, count: 890 }
+          },
+          {
+            id: 1003,
+            title: 'Whirlpool 265L Refrigerator',
+            price: 24999,
+            category: 'appliances',
+            image: 'https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=400',
+            rating: { rate: 4.3, count: 567 }
+          },
+          {
+            id: 1004,
+            title: 'Philips LED Smart Bulb',
+            price: 599,
+            category: 'lighting',
+            image: 'https://images.unsplash.com/photo-1550985616-10810253b84d?w=400',
+            rating: { rate: 4.2, count: 2340 }
+          },
+          {
+            id: 1005,
+            title: 'Milton Thermosteel Water Bottle 1L',
+            price: 799,
+            category: 'home & kitchen',
+            image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400',
+            rating: { rate: 4.6, count: 3450 }
+          },
+          {
+            id: 1006,
+            title: 'Prestige Induction Cooktop',
+            price: 2499,
+            category: 'appliances',
+            image: 'https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=400',
+            rating: { rate: 4.4, count: 1890 }
+          },
+          {
+            id: 1007,
+            title: 'Seiko Wall Clock',
+            price: 1299,
+            category: 'home decor',
+            image: 'https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?w=400',
+            rating: { rate: 4.5, count: 890 }
+          },
+          {
+            id: 1008,
+            title: 'Wooden Photo Frame Set of 3',
+            price: 899,
+            category: 'home decor',
+            image: 'https://images.unsplash.com/photo-1513519245088-0e12902e35ca?w=400',
+            rating: { rate: 4.3, count: 670 }
+          },
+          {
+            id: 1009,
+            title: 'Ceramic Water Jug with Glasses',
+            price: 1499,
+            category: 'home & kitchen',
+            image: 'https://images.unsplash.com/photo-1584627904-1bc1c0c3c7d9?w=400',
+            rating: { rate: 4.4, count: 450 }
+          },
+          {
+            id: 1010,
+            title: 'Bajaj Table Fan 400mm',
+            price: 1899,
+            category: 'appliances',
+            image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400',
+            rating: { rate: 4.2, count: 1200 }
+          }
+        ];
+
+        // Combine all products
+        const allProducts = [...fakeStoreData, ...dummyJsonData.products, ...customProducts];
+
+        // Find max price
+        const maxOriginalPrice = Math.max(...allProducts.map(item => item.price));
+
+        // Adapt all products to uniform format
+        const adaptedProducts = allProducts.map((item, index) => ({
+          id: item.id || (2000 + index),
           name: item.title,
-          // Normalize price from 200 to max price (let's use 5000 as max)
-          price: 200 + ((item.price / maxOriginalPrice) * (5000 - 200)),
+          // Normalize price from 200 to 50000
+          price: 200 + ((item.price / maxOriginalPrice) * (50000 - 200)),
           category: item.category,
-          image: item.image,
-          rating: item.rating.rate,
-          sold: item.rating.count
+          image: item.image || item.thumbnail || 'https://via.placeholder.com/400',
+          rating: item.rating?.rate || item.rating || 4.0,
+          sold: item.rating?.count || item.stock || Math.floor(Math.random() * 1000)
         }));
+
         setProducts(adaptedProducts);
-      })
-      .catch(err => console.error("Failed to fetch products:", err));
+      } catch (err) {
+        console.error("Failed to fetch products:", err);
+      }
+    };
+
+    fetchAllProducts();
   }, []);
 
   // Simple recommendation logic: suggest products from categories user has viewed
