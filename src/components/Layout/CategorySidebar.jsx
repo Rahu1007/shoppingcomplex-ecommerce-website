@@ -9,7 +9,7 @@ const CategorySidebar = () => {
             <ul>
                 {categories.map(cat => (
                     <li key={cat.id} className="category-item">
-                        <span className="cat-icon">📁</span>
+                        <span className="cat-icon"></span>
                         <span className="cat-name">{cat.name}</span>
                         <div className="sub-menu">
                             {cat.sub.map(s => (

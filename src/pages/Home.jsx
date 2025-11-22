@@ -4,6 +4,7 @@ import BannerSlider from '../components/Home/BannerSlider';
 import CategorySidebar from '../components/Layout/CategorySidebar';
 import HeroSection from '../components/Home/HeroSection';
 import RecommendationSection from '../components/Product/RecommendationSection';
+import TrendingSection from '../components/Product/TrendingSection';
 import ProductCard from '../components/Product/ProductCard';
 
 const Home = () => {
@@ -20,6 +21,9 @@ const Home = () => {
                 </div>
             </div>
 
+            {/* Trending Products Section */}
+            <TrendingSection />
+
             <div style={{ marginTop: '40px' }}>
                 <h3 style={{ fontSize: '20px', marginBottom: '20px' }}>Just For You</h3>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '16px' }}>
@@ -29,9 +33,11 @@ const Home = () => {
                 </div>
             </div>
 
+            {/* Personalized Recommendations */}
             <RecommendationSection />
         </div>
     );
 };
 
 export default Home;
+

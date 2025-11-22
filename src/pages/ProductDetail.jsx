@@ -1,14 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext';
+import SimilarProducts from '../components/Product/SimilarProducts';
 import './ProductDetail.css';
 
 const ProductDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const { products, addToCart } = useContext(ShopContext);
+    const { products, addToCart, addToHistory, trackPurchase } = useContext(ShopContext);
 
     const product = products.find(p => p.id === parseInt(id));
+
+    // Track product view when component mounts
+    useEffect(() => {
+        if (product) {
+            addToHistory(product.id);
+        }
+    }, [product, addToHistory]);
 
     if (!product) {
         return (
@@ -21,6 +29,8 @@ const ProductDetail = () => {
 
     const handleBuyNow = () => {
         addToCart(product);
+        // Track purchase in backend
+        trackPurchase(product.id);
         alert('Product added to cart! Proceeding to checkout...');
         // In a real app, navigate to checkout page
     };
@@ -70,9 +80,13 @@ const ProductDetail = () => {
                         </div>
                     </div>
                 </div>
+
+                {/* Similar Products Section */}
+                <SimilarProducts productId={product.id} />
             </div>
         </div>
     );
 };
 
 export default ProductDetail;
+

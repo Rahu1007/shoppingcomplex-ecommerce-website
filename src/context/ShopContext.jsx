@@ -167,8 +167,32 @@ export const ShopProvider = ({ children }) => {
     });
   };
 
+  const getSimilarProductsForItem = (productId, n = 6) => {
+    console.log('Getting similar products for product ID:', productId);
+    const product = products.find(p => p.id === productId);
+
+    if (!product) {
+      console.log('Product not found');
+      return [];
+    }
+
+    const similar = products
+      .filter(p => p.category === product.category && p.id !== productId)
+      .slice(0, n);
+
+    console.log(`Found ${similar.length} similar products in category: ${product.category}`);
+    return similar;
+  };
+
   return (
-    <ShopContext.Provider value={{ products, cart, addToCart, recommendations, addToHistory }}>
+    <ShopContext.Provider value={{
+      products,
+      cart,
+      addToCart,
+      recommendations,
+      addToHistory,
+      getSimilarProductsForItem
+    }}>
       {children}
     </ShopContext.Provider>
   );

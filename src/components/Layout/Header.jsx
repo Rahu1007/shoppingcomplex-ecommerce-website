@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ShopContext } from '../../context/ShopContext';
 import './Header.css';
 
 const Header = () => {
     const { cart } = useContext(ShopContext);
+    const [menuOpen, setMenuOpen] = useState(false);
 
     return (
         <header className="header">
@@ -47,7 +48,42 @@ const Header = () => {
                         </div>
                     </div>
                 </div>
+
+                {/* Hamburger Menu Button - Right Side */}
+                <button
+                    className={`hamburger-menu ${menuOpen ? 'open' : ''}`}
+                    onClick={() => setMenuOpen(!menuOpen)}
+                    aria-label="Toggle menu"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
+
+            {/* Mobile Menu Dropdown */}
+            {menuOpen && (
+                <div className="mobile-menu">
+                    <div className="mobile-menu-item">
+                        <div className="search-bar-mobile">
+                            <input type="text" placeholder="Search products..." />
+                            <button className="search-btn">🔍</button>
+                        </div>
+                    </div>
+                    <Link to="/login" className="mobile-menu-item" onClick={() => setMenuOpen(false)}>
+                        <span className="icon">👤</span>
+                        <span>Login</span>
+                    </Link>
+                    <Link to="/signup" className="mobile-menu-item" onClick={() => setMenuOpen(false)}>
+                        <span className="icon">✍️</span>
+                        <span>Signup</span>
+                    </Link>
+                    <div className="mobile-menu-item">
+                        <span className="icon">💬</span>
+                        <span>Messages</span>
+                    </div>
+                </div>
+            )}
         </header>
     );
 };
