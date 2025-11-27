@@ -10,6 +10,16 @@
   --font-family: 'Roboto', sans-serif;
 }
 
+/* Dark Mode Variables */
+[data-theme="dark"] {
+  --text-dark: #e0e0e0;
+  --text-light: #b0b0b0;
+  --bg-light: #1a1a1a;
+  --white: #2d2d2d;
+  --border-color: #404040;
+  --hover-bg: #333333;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -21,6 +31,7 @@ body {
   background-color: var(--bg-light);
   color: var(--text-dark);
   line-height: 1.5;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 a {

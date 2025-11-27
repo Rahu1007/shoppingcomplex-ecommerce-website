@@ -1,14 +1,182 @@
-.header {
-    background-color: #fff;
+/* Top Menu Bar */
+.top-menu-bar {
+    background-color: #2c3e50;
+    color: white;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+[data-theme="dark"] .top-menu-bar {
+    background-color: #1a1a1a;
     border-bottom: 1px solid var(--border-color);
 }
 
+.top-menu-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+}
+
+.top-menu-hamburger {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.top-menu-hamburger:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode-toggle {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.dark-mode-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+}
+
+/* Expandable Navigation Section */
+.top-nav-expanded {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-bottom: 2px solid var(--primary-orange);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    animation: slideDownNav 0.3s ease-out;
+    transition: background 0.3s ease;
+}
+
+[data-theme="dark"] .top-nav-expanded {
+    background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+}
+
+@keyframes slideDownNav {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.expanded-search {
+    display: flex;
+    gap: 0;
+    margin: 20px 0;
+    border: 2px solid var(--primary-orange);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--white);
+    transition: background 0.3s ease;
+}
+
+.expanded-search .search-select {
+    border: none;
+    padding: 14px 16px;
+    background: var(--white);
+    border-right: 1px solid var(--border-color);
+    outline: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+}
+
+.expanded-search-input {
+    flex: 1;
+    border: none;
+    padding: 14px 16px;
+    outline: none;
+    font-size: 14px;
+    background: var(--white);
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+}
+
+.expanded-search-input::placeholder {
+    color: #999;
+}
+
+.expanded-search-btn {
+    background: var(--primary-orange);
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.expanded-search-btn:hover {
+    background: var(--secondary-orange);
+}
+
+.expanded-nav-items {
+    display: flex;
+    gap: 12px;
+    padding-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.expanded-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 14px;
+}
+
+.expanded-nav-item:hover {
+    background: var(--primary-orange);
+    color: white;
+    border-color: var(--primary-orange);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 106, 0, 0.3);
+}
+
+.expanded-nav-item .nav-icon {
+    font-size: 18px;
+}
+
+.header {
+    background-color: var(--white);
+    border-bottom: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
 .top-bar {
-    background-color: #fff;
+    background-color: var(--white);
     border-bottom: 1px solid var(--border-color);
     font-size: 12px;
     color: var(--text-light);
     padding: 4px 0;
+    transition: all 0.3s ease;
 }
 
 .top-bar-content {
@@ -153,11 +321,12 @@
     top: 100%;
     left: 0;
     right: 0;
-    background: white;
+    background: var(--white);
     border-top: 1px solid var(--border-color);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     z-index: 100;
     animation: slideDown 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: background 0.3s ease;
 }
 
 @keyframes slideDown {
@@ -215,7 +384,7 @@
 }
 
 .mobile-menu-item:hover {
-    background: linear-gradient(to right, #fff5ed, #ffffff);
+    background: var(--hover-bg);
     padding-left: 25px;
 }
 
@@ -236,6 +405,8 @@
     border-radius: 20px;
     outline: none;
     transition: all 0.3s ease;
+    background: var(--white);
+    color: var(--text-dark);
 }
 
 .search-bar-mobile input:focus {
