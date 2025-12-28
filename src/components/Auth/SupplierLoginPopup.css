@@ -1,0 +1,276 @@
+.supplier-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+}
+
+.supplier-popup-card {
+    background: white;
+    width: 900px;
+    height: 550px;
+    display: flex;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.supplier-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #666;
+    cursor: pointer;
+    z-index: 10;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.supplier-close-btn:hover {
+    background: #f0f0f0;
+    color: #333;
+}
+
+/* Left Side - Banner */
+.supplier-popup-left {
+    flex: 0.8;
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    color: white;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.supplier-popup-left::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://img.freepik.com/free-vector/logistics-transportation_1284-18456.jpg?t=st=1708453488~exp=1708457088~hmac=63c330f6a27e704b281862572c83c27e85c8087943d84877f988898980b1e4f4') no-repeat center/cover;
+    opacity: 0.1;
+    mix-blend-mode: overlay;
+}
+
+.supplier-banner-content {
+    position: relative;
+    z-index: 1;
+}
+
+.supplier-banner-content h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+
+.supplier-banner-content p {
+    font-size: 16px;
+    opacity: 0.9;
+    margin-bottom: 32px;
+}
+
+.supplier-benefits {
+    list-style: none;
+    padding: 0;
+}
+
+.supplier-benefits li {
+    font-size: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Right Side - Form */
+.supplier-popup-right {
+    flex: 1;
+    padding: 60px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.supplier-form-header {
+    margin-bottom: 32px;
+}
+
+.supplier-form-header h3 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.supplier-form-header p {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Form Elements */
+.supplier-login-form .form-group {
+    margin-bottom: 24px;
+}
+
+.supplier-login-form label {
+    display: block;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.supplier-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.2s;
+}
+
+.supplier-input:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.supplier-auth-btn {
+    width: 100%;
+    padding: 14px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.supplier-auth-btn:hover {
+    background: #2980b9;
+}
+
+.supplier-link-text {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+.supplier-link-text span {
+    color: #3498db;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 4px;
+}
+
+.supplier-link-text span:hover {
+    text-decoration: underline;
+}
+
+/* OTP Section */
+.otp-info {
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: #666;
+}
+
+.change-btn {
+    background: none;
+    border: none;
+    color: #3498db;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 8px;
+    font-size: 13px;
+}
+
+.otp-inputs {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.otp-inputs input {
+    width: 45px;
+    height: 50px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.otp-inputs input:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.resend-timer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+.resend-link {
+    color: #3498db;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .supplier-popup-card {
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+
+    .supplier-popup-left {
+        padding: 30px;
+        flex: 0 0 auto;
+        min-height: 200px;
+    }
+
+    .supplier-popup-right {
+        padding: 30px;
+    }
+}

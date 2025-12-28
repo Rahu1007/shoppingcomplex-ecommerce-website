@@ -15,11 +15,16 @@ const ProductCard = ({ product }) => {
         return null;
     }
 
+    // Safety checks for product data
+    if (!product || !product.id || !product.name) {
+        return null;
+    }
+
     return (
         <Link to={`/product/${product.id}`} className="product-card">
             <div className="product-image-container">
                 <img
-                    src={product.image}
+                    src={product.image || 'https://via.placeholder.com/400'}
                     alt={product.name}
                     onError={handleImageError}
                     loading="lazy"
@@ -27,10 +32,10 @@ const ProductCard = ({ product }) => {
             </div>
             <div className="product-info">
                 <h3 className="product-name">{product.name}</h3>
-                <div className="product-price">₹{product.price.toFixed(2)}</div>
+                <div className="product-price">₹{typeof product.price === 'number' ? product.price.toFixed(2) : '0.00'}</div>
                 <div className="product-meta">
-                    <span className="product-rating">⭐ {product.rating}</span>
-                    <span className="product-sold">{product.sold} sold</span>
+                    <span className="product-rating">⭐ {product.rating || 0}</span>
+                    <span className="product-sold">{product.sold || 0} sold</span>
                 </div>
             </div>
         </Link>

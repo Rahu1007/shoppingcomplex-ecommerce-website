@@ -32,7 +32,7 @@ const SimilarProducts = ({ productId }) => {
             console.log('SimilarProducts: Setting loading to false');
             setLoading(false);
         }
-    }, [productId, getSimilarProductsForItem]);
+    }, [productId]); // eslint-disable-next-line react-hooks/exhaustive-deps
 
     if (loading) {
         return (

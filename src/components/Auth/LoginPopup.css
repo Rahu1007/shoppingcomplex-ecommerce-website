@@ -405,6 +405,103 @@
     text-decoration: underline;
 }
 
+/* OTP Input Container */
+.otp-input-container {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.otp-input {
+    width: 50px;
+    height: 56px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    outline: none;
+    transition: all 0.3s ease;
+    background: white;
+    color: var(--primary-orange);
+}
+
+.otp-input:focus {
+    border-color: var(--primary-orange);
+    box-shadow: 0 0 0 4px rgba(255, 106, 0, 0.1);
+    transform: scale(1.05);
+}
+
+.otp-input:not(:placeholder-shown) {
+    border-color: var(--primary-orange);
+    background: linear-gradient(135deg, #fff5ed 0%, #ffffff 100%);
+}
+
+/* OTP Timer Section */
+.otp-timer-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.timer-text {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+.timer-count {
+    font-weight: 700;
+    color: var(--primary-orange);
+}
+
+.resend-btn {
+    background: none;
+    border: none;
+    color: var(--primary-orange);
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.resend-btn:hover {
+    background: rgba(255, 106, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+.resend-btn:active {
+    transform: translateY(0);
+}
+
+/* Edit Number Button */
+.edit-number-btn {
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    color: var(--primary-orange);
+    border: 2px solid var(--primary-orange);
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+}
+
+.edit-number-btn:hover {
+    background: var(--primary-orange);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 106, 0, 0.3);
+}
+
+.edit-number-btn:active {
+    transform: translateY(0);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .login-popup-card {
@@ -447,6 +544,16 @@
         font-size: 15px;
         padding: 14px;
     }
+
+    .otp-input {
+        width: 45px;
+        height: 52px;
+        font-size: 22px;
+    }
+
+    .otp-input-container {
+        gap: 8px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -468,5 +575,15 @@
 
     .bg-icon {
         font-size: 40px;
+    }
+
+    .otp-input {
+        width: 40px;
+        height: 48px;
+        font-size: 20px;
+    }
+
+    .otp-input-container {
+        gap: 6px;
     }
 }

@@ -2,13 +2,28 @@ import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ShopContext } from '../../context/ShopContext';
 import { ThemeContext } from '../../context/ThemeContext';
+import { useSupplier } from '../../context/SupplierContext';
+import SupplierLoginPopup from '../Auth/SupplierLoginPopup';
 import './Header.css';
 
 const Header = () => {
     const { cart } = useContext(ShopContext);
     const { isDarkMode, toggleTheme } = useContext(ThemeContext);
+    const { supplier, logout } = useSupplier();
     const [menuOpen, setMenuOpen] = useState(false);
     const [topMenuOpen, setTopMenuOpen] = useState(false);
+    const [supplierPopupOpen, setSupplierPopupOpen] = useState(false);
+
+    const handleSupplierClick = () => {
+        if (supplier) {
+            // If already logged in, go to dashboard
+            window.location.href = '/supplier/dashboard';
+        } else {
+            setSupplierPopupOpen(true);
+        }
+        setTopMenuOpen(false);
+        setMenuOpen(false);
+    };
 
     return (
         <header className="header">
@@ -60,10 +75,16 @@ const Header = () => {
                                 <span className="nav-icon">💬</span>
                                 <span>Messages</span>
                             </div>
-                            <div className="expanded-nav-item">
+
+                            {/* Supplier Link */}
+                            <div className="expanded-nav-item" onClick={handleSupplierClick}>
+                                <span className="nav-icon">🏪</span>
+                                <span>{supplier ? 'Supplier Dashboard' : 'Become a Supplier'}</span>
+                            </div>
+                            <Link to="/cart" className="expanded-nav-item" onClick={() => setTopMenuOpen(false)}>
                                 <span className="nav-icon">🛒</span>
                                 <span>Cart ({cart.length})</span>
-                            </div>
+                            </Link>
                             <div className="expanded-nav-item">
                                 <span className="nav-icon">📦</span>
                                 <span>Orders</span>
@@ -94,8 +115,17 @@ const Header = () => {
                         <span className="icon">💬</span>
                         <span>Messages</span>
                     </div>
+                    <div className="mobile-menu-item" onClick={handleSupplierClick}>
+                        <span className="icon">🏪</span>
+                        <span>{supplier ? 'Dashboard' : 'Supplier Zone'}</span>
+                    </div>
                 </div>
             )}
+
+            <SupplierLoginPopup
+                isOpen={supplierPopupOpen}
+                onClose={() => setSupplierPopupOpen(false)}
+            />
         </header>
     );
 };

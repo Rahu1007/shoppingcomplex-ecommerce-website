@@ -12,6 +12,8 @@
     cursor: pointer;
     margin-bottom: 20px;
     padding: 10px;
+    position: relative;
+    z-index: 1100;
 }
 
 .back-button:hover {

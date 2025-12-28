@@ -1,0 +1,216 @@
+.toast-container {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    pointer-events: none;
+}
+
+.toast {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 300px;
+    max-width: 400px;
+    padding: 16px 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    pointer-events: all;
+    animation: slideIn 0.3s ease-out;
+    border-left: 4px solid;
+    backdrop-filter: blur(10px);
+}
+
+.dark-mode .toast {
+    background: rgba(30, 30, 30, 0.95);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.toast-exit {
+    animation: slideOut 0.3s ease-in forwards;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+}
+
+.toast-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.toast-success {
+    border-left-color: #38a169;
+}
+
+.toast-success .toast-icon {
+    background: linear-gradient(135deg, #38a169 0%, #48bb78 100%);
+    color: white;
+}
+
+.toast-error {
+    border-left-color: #e53e3e;
+}
+
+.toast-error .toast-icon {
+    background: linear-gradient(135deg, #e53e3e 0%, #fc8181 100%);
+    color: white;
+}
+
+.toast-info {
+    border-left-color: #3182ce;
+}
+
+.toast-info .toast-icon {
+    background: linear-gradient(135deg, #3182ce 0%, #63b3ed 100%);
+    color: white;
+}
+
+.toast-message {
+    flex: 1;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #2d3748;
+    line-height: 1.5;
+}
+
+.dark-mode .toast-message {
+    color: #f7fafc;
+}
+
+.toast-close {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: transparent;
+    color: #718096;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    line-height: 1;
+    padding: 0;
+}
+
+.toast-close:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: #2d3748;
+}
+
+.dark-mode .toast-close {
+    color: #a0aec0;
+}
+
+.dark-mode .toast-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #f7fafc;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .toast-container {
+        top: 70px;
+        right: 10px;
+        left: 10px;
+        align-items: stretch;
+    }
+
+    .toast {
+        min-width: auto;
+        max-width: none;
+        width: 100%;
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateY(-100px);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideOut {
+        from {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        to {
+            transform: translateY(-100px);
+            opacity: 0;
+        }
+    }
+}
+
+/* Progress bar animation */
+.toast::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #ff6b00 0%, #ff8c42 100%);
+    animation: progress var(--progress-duration, 3000ms) linear;
+    border-radius: 0 0 0 12px;
+}
+
+.toast-success::after {
+    background: linear-gradient(90deg, #38a169 0%, #48bb78 100%);
+}
+
+.toast-error::after {
+    background: linear-gradient(90deg, #e53e3e 0%, #fc8181 100%);
+}
+
+.toast-info::after {
+    background: linear-gradient(90deg, #3182ce 0%, #63b3ed 100%);
+}
+
+@keyframes progress {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0%;
+    }
+}

@@ -1,57 +1,118 @@
 .category-sidebar {
-    width: 240px;
+    width: 260px;
     background: #fff;
     border-radius: 8px;
-    padding: 12px 0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 16px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    position: relative;
+    height: 100%;
 }
 
 .category-sidebar h3 {
-    padding: 0 16px 10px;
-    font-size: 14px;
+    padding: 0 20px 16px;
+    font-size: 16px;
+    font-weight: 700;
     color: var(--text-dark);
-    border-bottom: 1px solid #eee;
+    border-bottom: 2px solid #f1f2f6;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .category-item {
-    padding: 10px 16px;
+    padding: 12px 24px;
     cursor: pointer;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 10px;
-    font-size: 13px;
-    color: var(--text-light);
+    font-size: 14px;
+    color: #555;
     position: relative;
+    transition: all 0.2s;
 }
 
 .category-item:hover {
-    background-color: #f2f3f7;
-    color: var(--text-dark);
+    background-color: #f8f9fa;
+    color: var(--primary-orange);
     font-weight: 500;
 }
 
+/* Arrow indicator */
+.category-item::after {
+    content: '›';
+    font-size: 18px;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.category-item:hover::after {
+    opacity: 1;
+}
+
+/* Nested Sub-menu (Chips Layout) */
 .sub-menu {
     display: none;
     position: absolute;
-    left: 100%;
+    left: 260px;
+    /* Aligns with sidebar width */
     top: 0;
-    width: 200px;
+    min-height: 100%;
+    width: 300px;
     background: #fff;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-    padding: 16px;
-    z-index: 100;
-    border-radius: 0 8px 8px 0;
+    box-shadow: 4px 0 16px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    z-index: 1000;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-left: 1px solid #f1f2f6;
 }
 
 .category-item:hover .sub-menu {
     display: block;
+    animation: fadeIn 0.2s ease-out;
 }
 
-.sub-item {
-    padding: 4px 0;
-    color: var(--text-light);
+.sub-menu h4 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 14px;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
 }
 
-.sub-item:hover {
-    color: var(--primary-orange);
+.chip-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.sub-item-chip {
+    padding: 6px 14px;
+    background: #f8f9fa;
+    border: 1px solid #e1e4e8;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.sub-item-chip:hover {
+    background: #eef2f7;
+    border-color: #3498db;
+    color: #3498db;
+    transform: translateY(-1px);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
